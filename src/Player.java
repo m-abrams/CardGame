@@ -28,7 +28,7 @@ public class Player {
         return hand;
     }
     public void addPoints(int numAdd) {
-        points += numAdd();
+        points += numAdd;
     }
     public void addCard(Card theCard) {
         hand.add(theCard);

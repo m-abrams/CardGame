@@ -22,17 +22,16 @@ public class Deck {
     public Card deal() {
         if (cardsLeft >= 1) {
             cardsLeft--;
-            return deck.remove(deck.size() - 1)
+            return deck.remove(deck.size() - 1);
         }
         return null;
     }
     public void shuffle() {
-        for (int i = deck.size(); i > 0; i--) {
-            int r = (int) (Math.random() * i) {
-                Card t  = deck.get(i);
-                deck.set(i, deck.get(r));
-                deck.set(r, t);
-            }
+        for (int i = cardsLeft; i > 0; i--) {
+            int r = (int) (Math.random() * i);
+            Card t  = deck.get(i);
+            deck.set(i, deck.get(r));
+            deck.set(r, t);
         }
     }
 }
