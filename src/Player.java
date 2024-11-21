@@ -27,7 +27,13 @@ public class Player {
     public ArrayList<Card> getHand() {
         return hand;
     }
-    public void addPoints() {
-        points += .getValue();
+    public void addPoints(int numAdd) {
+        points += numAdd();
+    }
+    public void addCard(Card theCard) {
+        hand.add(theCard);
+    }
+    public String toString() {
+        return name + " has " + points + " points\n" + name + "'s: " + hand;
     }
 }
