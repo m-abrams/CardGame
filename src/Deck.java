@@ -28,10 +28,10 @@ public class Deck {
     }
     public void shuffle() {
         for (int i = cardsLeft; i > 0; i--) {
-            int r = (int) (Math.random() * i);
+            int j = (int) (Math.random() * i);
             Card t  = deck.get(i);
-            deck.set(i, deck.get(r));
-            deck.set(r, t);
+            deck.set(i, deck.get(j));
+            deck.set(j, t);
         }
     }
 }
