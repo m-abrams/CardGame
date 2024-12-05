@@ -1,6 +1,8 @@
 import java.util.Scanner;
 public class Game {
 
+
+    private double pot;
     private Deck deck;
     private Player user;
     private Player cpu = new Player("Geeg");
@@ -17,13 +19,29 @@ public class Game {
         String name = s1.nextLine();
         Player user = new Player(name);
         Player cpu = new Player("cpu");
+    }
+    public void startRound() {
         user.addCard(deck.deal());
         cpu.addCard(deck.deal());
         user.addCard(deck.deal());
         cpu.addCard(deck.deal());
         System.out.println("Your cards are the: " + user.getHand());
-
-
+    }
+    public boolean ifUserFolds() {
+        Scanner s1 = new Scanner(System.in);
+        System.out.println("Would you like to fold? (Yes or No)");
+        String fold = s1.nextLine().toLowerCase();
+        return fold.equals("yes");
+    }
+    public void foldHand() {
+        if (ifUserFolds()) {
+            cpu.addPoints(pot);
+            System.out.println("You chose to fold, the cpu gets the pot.")
+        }
+        pot = 0;
+        user.getHand().clear();
+        cpu.getHand().clear();
+        startRound();
     }
 
     public void printInstructions() {
@@ -37,6 +55,32 @@ public class Game {
 
     }
 
+    public void round1() {
+        double bet = 0;
+        System.out.println("Would you like to fold? (Yes or No)");
+        Scanner s1 = new Scanner(System.in);
+        String yesNo = s1.nextLine();
+        if (yesNo == "Yes") {
+            foldHand();
+        }
+        if (yesNo == "No") {
+            System.out.println("How much Would you like to bet?");
+            bet = s1.nextDouble();
+            while (bet > user.getPoints()) {
+                System.out.println("You don't have that much money! Type in your new bet: ");
+                bet = s1.nextDouble();
+            }
+            user.subPoints(bet);
+            System.out.println("The CPU calls");
+            pot += (bet * 2);
+        }
+    }
+    public void round2() {
+        Card temp = deck.deal();
+        user.addCard(temp);
+        cpu.addCard(temp);
+
+    }
     public static void main(String[] args) {
         Game g1 = new Game();
     }
